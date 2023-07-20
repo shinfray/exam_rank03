@@ -1,8 +1,6 @@
 NAME= micro_paint
 CFLAGS= -Wall -Wextra -Werror
-LDLIBS= -lm
 RM= rm -rf
-#SRCS=
 
 all: ${NAME}
 
