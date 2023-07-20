@@ -33,7 +33,7 @@ int	ft_retrieve_limit(FILE *file, t_limit *limit)
 
 int	ft_scan_l(FILE *file, t_shape *shape)
 {
-	return (fscanf(file, "%c %f %f %f %f %c\n]", &shape->op, &shape->x, &shape->y, &shape->width, &shape->height, &shape->ch));
+	return (fscanf(file, "%c %f %f %f %f %c\n", &shape->op, &shape->x, &shape->y, &shape->width, &shape->height, &shape->ch));
 }
 
 int	ft_quit(FILE *file, char *pic, const char *str)
