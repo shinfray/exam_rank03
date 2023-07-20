@@ -9,14 +9,14 @@
 # define ERRARG "Error: arguments\n"
 # define ERRCORR "Error: Operation file corrupted\n"
 
-typedef struct fl
+typedef struct limit
 {
 	int		width;
 	int		height;
 	char	bg_char;
-}				t_fl;
+}				t_limit;
 
-typedef struct cl
+typedef struct shape
 {
 	char	op;
 	float	x;
@@ -24,6 +24,6 @@ typedef struct cl
 	float	width;
 	float	height;
 	char	ch;
-}				t_cl;
+}				t_shape;
 
 #endif
