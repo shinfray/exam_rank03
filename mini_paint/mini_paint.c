@@ -69,30 +69,12 @@ char	*ft_pic(t_limit *limit)
 	}
 	return (pic);
 }
-
-// int	ft_is_in_bordure(t_shape *shape, int x, int y)
-// {
-// 	// float	tlx = shape->x;
-// 	// float	tly = shape->y;;
-
-// 	// return (((x - tlx) < 1.0 || ((tlx + shape->width) - x) < 1.0) \
-// 	// 		|| ((y - tly) < 1.0 || ((tly + shape->height) - y) < 1.0));
-
-// }
-
 int	ft_is_in_shape(t_shape *shape, char c, int x, int y)
 {
 	float	difference;
 
 	difference = sqrtf(powf(x - shape->x, 2) + powf(y - shape->y, 2));
-	return (difference <= shape->radius && (c == 'C' || (difference - shape->radius < 1)));
-	// float	tlx = shape->x;
-	// float	tly = shape->y;;
-	// float	brx = tlx + shape->width;;
-	// float	bry = tly + shape->height;;
-
-	// return ((x >= tlx && x <= brx) && (y >= tly && y <= bry) \
-	// 		&& (c == 'R' || (ft_is_in_bordure(shape, x, y) == 1)));
+	return (difference <= shape->radius && (c == 'C' || ((shape->radius - difference) < 1.0)));
 }
 
 void	ft_apply_op(t_limit *limit, char *pic, t_shape *shape, char c)
@@ -106,7 +88,7 @@ void	ft_apply_op(t_limit *limit, char *pic, t_shape *shape, char c)
 		x = 0;
 		while (x < limit->width)
 		{
-			if (ft_is_in_shape(shape, c, x, y) == 1)
+			if (ft_is_in_shape(shape, c, x, y))
 					pic[i] = shape->ch;
 			++i;
 			++x;
