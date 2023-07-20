@@ -33,7 +33,7 @@ int	ft_retrieve_limit(FILE *file, t_limit *limit)
 
 int	ft_scan_l(FILE *file, t_shape *shape)
 {
-	return (fscanf(file, "%c %f %f %f %f %c\n]", &shape->op, &shape->x, &shape->y, &shape->width, &shape->height, &shape->ch));
+	return (fscanf(file, "%c %f %f %f %c\n]", &shape->op, &shape->x, &shape->y, &shape->radius, &shape->ch));
 }
 
 int	ft_quit(FILE *file, char *pic, const char *str)
@@ -70,24 +70,29 @@ char	*ft_pic(t_limit *limit)
 	return (pic);
 }
 
-int	ft_is_in_bordure(t_shape *shape, int x, int y)
-{
-	float	tlx = shape->x;
-	float	tly = shape->y;;
+// int	ft_is_in_bordure(t_shape *shape, int x, int y)
+// {
+// 	// float	tlx = shape->x;
+// 	// float	tly = shape->y;;
 
-	return (((x - tlx) < 1.0 || ((tlx + shape->width) - x) < 1.0) \
-			|| ((y - tly) < 1.0 || ((tly + shape->height) - y) < 1.0));
-}
+// 	// return (((x - tlx) < 1.0 || ((tlx + shape->width) - x) < 1.0) \
+// 	// 		|| ((y - tly) < 1.0 || ((tly + shape->height) - y) < 1.0));
+
+// }
 
 int	ft_is_in_shape(t_shape *shape, char c, int x, int y)
 {
-	float	tlx = shape->x;
-	float	tly = shape->y;;
-	float	brx = tlx + shape->width;;
-	float	bry = tly + shape->height;;
+	float	difference;
 
-	return ((x >= tlx && x <= brx) && (y >= tly && y <= bry) \
-			&& (c == 'R' || (ft_is_in_bordure(shape, x, y) == 1)));
+	difference = sqrtf(powf(x - shape->x, 2) + powf(y - shape->y, 2));
+	return (difference <= shape->radius && (c == 'C' || (difference - shape->radius < 1)));
+	// float	tlx = shape->x;
+	// float	tly = shape->y;;
+	// float	brx = tlx + shape->width;;
+	// float	bry = tly + shape->height;;
+
+	// return ((x >= tlx && x <= brx) && (y >= tly && y <= bry) \
+	// 		&& (c == 'R' || (ft_is_in_bordure(shape, x, y) == 1)));
 }
 
 void	ft_apply_op(t_limit *limit, char *pic, t_shape *shape, char c)

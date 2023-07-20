@@ -1,6 +1,7 @@
 #ifndef MICRO_PAINT_H
 # define MICRO_PAINT_H
 
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
