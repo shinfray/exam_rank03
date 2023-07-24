@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   micro_paint.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/24 10:08:44 by shinfray          #+#    #+#             */
+/*   Updated: 2023/07/24 10:12:22 by shinfray         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "micro_paint.h"
 
 size_t	ft_strlen(const char *str)
@@ -72,8 +84,8 @@ char	*ft_pic(t_limit *limit)
 
 int	ft_is_in_bordure(t_shape *shape, int x, int y)
 {
-	float	tlx = shape->x;
-	float	tly = shape->y;;
+	const float	tlx = shape->x;
+	const float	tly = shape->y;
 
 	return (((x - tlx) < 1.0 || ((tlx + shape->width) - x) < 1.0) \
 			|| ((y - tly) < 1.0 || ((tly + shape->height) - y) < 1.0));
@@ -81,10 +93,10 @@ int	ft_is_in_bordure(t_shape *shape, int x, int y)
 
 int	ft_is_in_shape(t_shape *shape, char c, int x, int y)
 {
-	float	tlx = shape->x;
-	float	tly = shape->y;;
-	float	brx = tlx + shape->width;;
-	float	bry = tly + shape->height;;
+	const float	tlx = shape->x;
+	const float	tly = shape->y;
+	const float	brx = tlx + shape->width;
+	const float	bry = tly + shape->height;
 
 	return ((x >= tlx && x <= brx) && (y >= tly && y <= bry) \
 			&& (c == 'R' || (ft_is_in_bordure(shape, x, y) == 1)));
@@ -92,17 +104,19 @@ int	ft_is_in_shape(t_shape *shape, char c, int x, int y)
 
 void	ft_apply_op(t_limit *limit, char *pic, t_shape *shape, char c)
 {
-	size_t	i = 0;
-	int		y = 0;
+	size_t	i;
 	int		x;
+	int		y;
 
+	i = 0;
+	y = 0;
 	while (y < limit->height)
 	{
 		x = 0;
 		while (x < limit->width)
 		{
 			if (ft_is_in_shape(shape, c, x, y) == 1)
-					pic[i] = shape->ch;
+				pic[i] = shape->ch;
 			++i;
 			++x;
 		}

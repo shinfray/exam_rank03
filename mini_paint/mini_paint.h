@@ -1,5 +1,17 @@
-#ifndef MICRO_PAINT_H
-# define MICRO_PAINT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_paint.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/24 10:16:53 by shinfray          #+#    #+#             */
+/*   Updated: 2023/07/24 10:17:13 by shinfray         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MINI_PAINT_H
+# define MINI_PAINT_H
 
 # include <math.h>
 # include <stdio.h>

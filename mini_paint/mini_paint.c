@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_paint.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/24 10:15:03 by shinfray          #+#    #+#             */
+/*   Updated: 2023/07/24 10:16:11 by shinfray         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mini_paint.h"
 
 size_t	ft_strlen(const char *str)
@@ -69,27 +81,31 @@ char	*ft_pic(t_limit *limit)
 	}
 	return (pic);
 }
+
 int	ft_is_in_shape(t_shape *shape, char c, int x, int y)
 {
-	float	difference;
+	float	distance;
 
-	difference = sqrtf(powf(x - shape->x, 2) + powf(y - shape->y, 2));
-	return (difference <= shape->radius && (c == 'C' || ((shape->radius - difference) < 1.0)));
+	distance = sqrtf(powf(x - shape->x, 2) + powf(y - shape->y, 2));
+	return (distance <= shape->radius \
+			&& (c == 'C' || ((shape->radius - distance) < 1.0)));
 }
 
 void	ft_apply_op(t_limit *limit, char *pic, t_shape *shape, char c)
 {
-	size_t	i = 0;
-	int		y = 0;
+	size_t	i;
 	int		x;
+	int		y;
 
+	i = 0;
+	y = 0;
 	while (y < limit->height)
 	{
 		x = 0;
 		while (x < limit->width)
 		{
 			if (ft_is_in_shape(shape, c, x, y))
-					pic[i] = shape->ch;
+				pic[i] = shape->ch;
 			++i;
 			++x;
 		}
